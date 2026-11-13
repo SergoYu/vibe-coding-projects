@@ -181,11 +181,21 @@
 
 ## Публикация через GitHub Pages
 
-Не сделано: нужен ваш аккаунт GitHub. Порядок из гайда:
+Сайт опубликован: <https://sergoyu.github.io/vibe-coding-projects/>
 
-1. Создайте открытый репозиторий.
-2. Загрузите в корень содержимое одной папки проекта (так, чтобы `index.html` лежал в корне).
-3. Settings → Pages → Deploy from a branch → основная ветка, папка `/(root)`.
-4. Откройте адрес вида `https://ИМЯ.github.io/РЕПОЗИТОРИЙ/` и повторите проверки меню, формы и расчётов.
+| Проект | Адрес |
+|---|---|
+| Стартовая страница | <https://sergoyu.github.io/vibe-coding-projects/> |
+| 1. Одностраничный сайт | <https://sergoyu.github.io/vibe-coding-projects/businessvector-onepage/> |
+| 2. Многостраничный сайт | <https://sergoyu.github.io/vibe-coding-projects/businessvector/> |
+| 3. Финансовый калькулятор | <https://sergoyu.github.io/vibe-coding-projects/finance-app/> |
+
+Как это сделано, по шагам из гайда:
+
+1. Создан открытый репозиторий `vibe-coding-projects`.
+2. Все папки загружены в корень; в корне лежит общий `index.html` со ссылками на три проекта.
+3. Settings → Pages → Deploy from a branch → ветка `main`, папка `/(root)`.
+
+На опубликованном сайте повторно проверено: все внутренние ссылки, подключение CSS и JS, пять строк контрольной таблицы калькулятора и демонстрационная форма.
 
 Конфиденциальных данных и ключей в проектах нет.
