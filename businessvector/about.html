@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>О компании — БизнесВектор</title>
+  <meta name="description" content="«БизнесВектор» — вымышленное аналитическое агентство, созданное для учебного проекта. Принципы работы и подход.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Шапка: одинаковая на всех страницах -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="БизнесВектор — на главную">
+        <span class="logo-mark" aria-hidden="true"></span>
+        БизнесВектор
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-toggle-bars" aria-hidden="true"></span>
+        <span class="menu-toggle-text">Меню</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="about.html" aria-current="page">О компании</a></li>
+          <li><a href="faq.html">Вопросы</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">О компании</p>
+        <h1>Аналитика, которую понимает владелец</h1>
+        <p class="lead">«БизнесВектор» — вымышленное аналитическое агентство, созданное для учебного проекта. На его примере показано, как может выглядеть сайт компании, которая помогает малому бизнесу работать с цифрами.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-principles">
+      <div class="container">
+        <p class="section-label">Подход</p>
+        <h2 id="about-principles">Принципы работы</h2>
+        <div class="grid grid-2">
+          <article class="glass card">
+            <h3>Простой язык</h3>
+            <p>Выводы формулируются без лишних терминов. Если термин нужен, он объясняется.</p>
+          </article>
+          <article class="glass card">
+            <h3>Проверяемые расчёты</h3>
+            <p>Каждая цифра в отчёте сопровождается формулой и источником данных, чтобы расчёт можно было повторить.</p>
+          </article>
+          <article class="glass card">
+            <h3>Только нужные показатели</h3>
+            <p>Лучше пять показателей, за которыми действительно следят, чем тридцать, которые никто не открывает.</p>
+          </article>
+          <article class="glass card">
+            <h3>Бережное отношение к данным</h3>
+            <p>Финансовые данные компании используются только для согласованной задачи.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="about-audience">
+      <div class="container">
+        <p class="section-label">Аудитория</p>
+        <h2 id="about-audience">Для кого этот сайт</h2>
+        <p class="section-lead">Для владельцев малого бизнеса, которые хотят принимать решения на основе цифр, но не имеют в штате финансового аналитика.</p>
+        <div class="grid grid-3">
+          <article class="glass card">
+            <h3>Торговля</h3>
+            <p>Магазины и интернет-магазины: ассортимент, наценка, закупки.</p>
+          </article>
+          <article class="glass card">
+            <h3>Услуги</h3>
+            <p>Студии, мастерские, сервисные компании: загрузка, средний чек, повторные обращения.</p>
+          </article>
+          <article class="glass card">
+            <h3>Небольшое производство</h3>
+            <p>Себестоимость, постоянные и переменные затраты, точка безубыточности.</p>
+          </article>
+        </div>
+        <p class="notice">На сайте намеренно нет отзывов, наград, имён сотрудников и списка клиентов: компания учебная, и таких данных не существует.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="glass cta">
+          <div>
+            <h2>Остались вопросы о компании?</h2>
+            <p>Ответы на самые частые из них собраны на отдельной странице.</p>
+          </div>
+          <a class="button button-primary" href="faq.html">Открыть вопросы</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал: одинаковый на всех страницах -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-about"><strong>БизнесВектор</strong> — учебный проект. Компания вымышленная, кейсы и тексты носят демонстрационный характер.</p>
+      <nav class="footer-nav" aria-label="Меню в подвале">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="faq.html">Вопросы</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

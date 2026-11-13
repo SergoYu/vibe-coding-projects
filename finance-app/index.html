@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Финансовый калькулятор организации</title>
+  <meta name="description" content="Учебное мини-приложение: расчёт прибыли и рентабельности продаж по выручке, переменным и постоянным затратам.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <p class="badge">Учебное мини-приложение</p>
+      <h1>Финансовый калькулятор организации</h1>
+      <p class="lead">Введите выручку и затраты за один период — калькулятор покажет прибыль и рентабельность продаж. Данные никуда не отправляются: расчёт выполняется в&nbsp;браузере.</p>
+    </header>
+
+    <div class="layout">
+      <!-- Ввод данных -->
+      <section class="panel" aria-labelledby="input-title">
+        <h2 id="input-title">Исходные данные</h2>
+
+        <form id="calc-form" novalidate>
+          <div class="field">
+            <label for="revenue">Выручка, ₽</label>
+            <input type="text" id="revenue" name="revenue" inputmode="decimal" autocomplete="off"
+                   placeholder="Например, 500 000" aria-describedby="revenue-hint revenue-error">
+            <p class="hint" id="revenue-hint">Сумма продаж за период.</p>
+            <p class="field-error" id="revenue-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="variable">Переменные затраты, ₽</label>
+            <input type="text" id="variable" name="variable" inputmode="decimal" autocomplete="off"
+                   placeholder="Например, 300 000" aria-describedby="variable-hint variable-error">
+            <p class="hint" id="variable-hint">Зависят от объёма продаж: сырьё, товары, сдельная оплата.</p>
+            <p class="field-error" id="variable-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="fixed">Постоянные затраты, ₽</label>
+            <input type="text" id="fixed" name="fixed" inputmode="decimal" autocomplete="off"
+                   placeholder="Например, 120 000" aria-describedby="fixed-hint fixed-error">
+            <p class="hint" id="fixed-hint">Не зависят от объёма продаж: аренда, оклады, связь.</p>
+            <p class="field-error" id="fixed-error" aria-live="polite"></p>
+          </div>
+
+          <p class="form-note">Допускаются числа от 0. Копейки можно указать через запятую. Если значение равно нулю, введите 0.</p>
+
+          <div class="buttons">
+            <button class="button button-primary" type="submit">Рассчитать</button>
+            <button class="button button-ghost" type="button" id="reset-button">Сбросить</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Результат -->
+      <section class="panel" aria-labelledby="result-title">
+        <h2 id="result-title">Результат</h2>
+
+        <p class="placeholder" id="result-placeholder">Заполните три поля и нажмите «Рассчитать».</p>
+
+        <div id="result" aria-live="polite" hidden>
+          <div class="result-main">
+            <div class="result-tile">
+              <p class="result-label">Прибыль</p>
+              <p class="result-value" id="profit-value">—</p>
+              <p class="status" id="profit-status"></p>
+            </div>
+            <div class="result-tile">
+              <p class="result-label">Рентабельность продаж</p>
+              <p class="result-value" id="margin-value">—</p>
+              <p class="result-note" id="margin-note"></p>
+            </div>
+          </div>
+
+          <!-- Диаграмма: выручка и суммарные затраты -->
+          <figure class="chart" aria-labelledby="chart-title">
+            <figcaption id="chart-title">Выручка и суммарные затраты, ₽</figcaption>
+
+            <div class="chart-row" tabindex="0" aria-describedby="tip-revenue">
+              <div class="chart-head">
+                <span class="chart-name"><span class="swatch swatch-revenue" aria-hidden="true"></span>Выручка</span>
+                <span class="chart-amount" id="chart-revenue-value"></span>
+              </div>
+              <div class="chart-track"><div class="chart-bar bar-revenue" id="chart-revenue-bar"></div></div>
+              <div class="chart-tip" id="tip-revenue" role="tooltip"></div>
+            </div>
+
+            <div class="chart-row" tabindex="0" aria-describedby="tip-costs">
+              <div class="chart-head">
+                <span class="chart-name"><span class="swatch swatch-costs" aria-hidden="true"></span>Суммарные затраты</span>
+                <span class="chart-amount" id="chart-costs-value"></span>
+              </div>
+              <div class="chart-track"><div class="chart-bar bar-costs" id="chart-costs-bar"></div></div>
+              <div class="chart-tip" id="tip-costs" role="tooltip"></div>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </div>
+
+    <!-- Пояснения показателей -->
+    <section class="panel explain" aria-labelledby="explain-title">
+      <h2 id="explain-title">Как считаются показатели</h2>
+      <dl>
+        <div>
+          <dt>Прибыль</dt>
+          <dd>Прибыль = Выручка − Переменные затраты − Постоянные затраты. Если результат отрицательный, это убыток.</dd>
+        </div>
+        <div>
+          <dt>Рентабельность продаж</dt>
+          <dd>Рентабельность продаж показывает долю прибыли в выручке. Рентабельность = Прибыль / Выручка × 100%. При нулевой выручке показатель не определяется.</dd>
+        </div>
+        <div>
+          <dt>Суммарные затраты</dt>
+          <dd>Суммарные затраты = Переменные затраты + Постоянные затраты. На диаграмме они сравниваются с выручкой.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <footer class="page-footer">
+      <p>Учебный проект. Калькулятор использует упрощённую модель и не заменяет бухгалтерский и налоговый расчёт.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

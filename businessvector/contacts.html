@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Контакты — БизнесВектор</title>
+  <meta name="description" content="Страница контактов учебного сайта «БизнесВектор» с демонстрационной формой: данные не отправляются.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к содержанию</a>
+
+  <!-- Шапка: одинаковая на всех страницах -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html" aria-label="БизнесВектор — на главную">
+        <span class="logo-mark" aria-hidden="true"></span>
+        БизнесВектор
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-toggle-bars" aria-hidden="true"></span>
+        <span class="menu-toggle-text">Меню</span>
+      </button>
+
+      <nav class="site-nav" id="site-nav" aria-label="Основное меню">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="faq.html">Вопросы</a></li>
+          <li><a href="contacts.html" aria-current="page">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="section-label">Контакты</p>
+        <h1>Расскажите о своей задаче</h1>
+        <p class="lead">Опишите, какой вопрос о финансах или продажах вы хотите решить. Этого достаточно, чтобы начать разговор.</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Контакты и форма">
+      <div class="container contacts">
+        <div class="contacts-text">
+          <h2>Как связаться</h2>
+          <p>«БизнесВектор» — учебная вымышленная компания, поэтому адреса, телефона и электронной почты у неё нет, и на сайте они не указаны.</p>
+          <h2 style="margin-top: 32px">Что полезно указать в сообщении</h2>
+          <ul>
+            <li>чем занимается компания;</li>
+            <li>какой вопрос вы хотите решить;</li>
+            <li>какие данные уже есть: учёт продаж, расходы, отчётность.</li>
+          </ul>
+        </div>
+
+        <form class="glass form" id="contact-form" novalidate>
+          <p class="notice" role="note">Демонстрационная форма — данные не отправляются</p>
+
+          <div class="field">
+            <label for="name">Имя</label>
+            <input type="text" id="name" name="name" autocomplete="name" aria-describedby="name-error">
+            <p class="field-error" id="name-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="email">Электронная почта</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" aria-describedby="email-error">
+            <p class="field-error" id="email-error" aria-live="polite"></p>
+          </div>
+
+          <div class="field">
+            <label for="message">Опишите задачу</label>
+            <textarea id="message" name="message" rows="4" aria-describedby="message-error"></textarea>
+            <p class="field-error" id="message-error" aria-live="polite"></p>
+          </div>
+
+          <button class="button button-primary button-wide" type="submit">Отправить</button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite" hidden></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал: одинаковый на всех страницах -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="footer-about"><strong>БизнесВектор</strong> — учебный проект. Компания вымышленная, кейсы и тексты носят демонстрационный характер.</p>
+      <nav class="footer-nav" aria-label="Меню в подвале">
+        <ul>
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="services.html">Услуги</a></li>
+          <li><a href="cases.html">Кейсы</a></li>
+          <li><a href="about.html">О компании</a></li>
+          <li><a href="faq.html">Вопросы</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
