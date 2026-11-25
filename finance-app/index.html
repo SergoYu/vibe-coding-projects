@@ -3,17 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Финансовый калькулятор организации</title>
-  <meta name="description" content="Учебное мини-приложение: расчёт прибыли и рентабельности продаж по выручке, переменным и постоянным затратам.">
-  <link rel="stylesheet" href="styles.css">
+  <title>ИИ-калькулятор финансовых результатов</title>
+  <meta name="description" content="Учебное приложение: расчёт прибыли и рентабельности продаж и ИИ-прогноз финансового результата с предупреждением о риске убытка.">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
   <main class="container">
     <header class="page-header">
-      <p class="badge">Учебное мини-приложение</p>
-      <h1>Финансовый калькулятор организации</h1>
-      <p class="lead">Введите выручку и затраты за один период — калькулятор покажет прибыль и рентабельность продаж. Данные никуда не отправляются: расчёт выполняется в&nbsp;браузере.</p>
+      <p class="badge">Учебный проект · «БизнесВектор»</p>
+      <h1>ИИ-калькулятор финансовых результатов</h1>
+      <p class="lead">Посчитайте прибыль и рентабельность за период, а затем введите историю за несколько месяцев: модель машинного обучения спрогнозирует прибыль на 3&nbsp;месяца вперёд, заранее предупредит о&nbsp;риске убытка и&nbsp;найдёт аномальные месяцы. Данные никуда не&nbsp;отправляются: всё считается в&nbsp;браузере.</p>
+      <nav class="page-nav" aria-label="Разделы калькулятора">
+        <a href="#calc-section">1. Расчёт за период</a>
+        <a href="#forecast">2. ИИ-прогноз</a>
+        <a href="#explain-title">Как это работает</a>
+      </nav>
     </header>
+
+    <h2 class="block-title" id="calc-section">1. Расчёт за период</h2>
 
     <div class="layout">
       <!-- Ввод данных -->
@@ -100,9 +107,77 @@
       </section>
     </div>
 
+    <!-- ИИ-прогноз -->
+    <section class="panel forecast" id="forecast" aria-labelledby="forecast-title">
+      <h2 id="forecast-title">2. ИИ-прогноз по истории месяцев</h2>
+      <p class="forecast-lead">Введите выручку и все затраты (переменные + постоянные) за 6–24 месяца подряд. Модель обучится на этих данных и спрогнозирует следующие 3 месяца.</p>
+
+      <div class="history-tools">
+        <label class="start-field">
+          <span>Первый месяц данных</span>
+          <input type="month" id="history-start">
+        </label>
+        <button class="button button-ghost button-small" type="button" id="fill-demo">Заполнить примером</button>
+        <button class="button button-ghost button-small" type="button" id="clear-history">Очистить</button>
+      </div>
+
+      <div class="history" role="group" aria-labelledby="forecast-title">
+        <div class="h-head" aria-hidden="true">
+          <span>Месяц</span><span>Выручка, ₽</span><span>Все затраты, ₽</span><span></span>
+        </div>
+        <div id="history-rows"></div>
+      </div>
+
+      <div class="history-footer">
+        <span class="history-count" id="history-count"></span>
+        <button class="button button-ghost button-small" type="button" id="add-month">+ Добавить месяц</button>
+      </div>
+
+      <p class="field-error history-error" id="history-error" role="alert" hidden></p>
+
+      <div class="buttons">
+        <button class="button button-primary" type="button" id="run-forecast">Построить ИИ-прогноз</button>
+      </div>
+
+      <div class="forecast-result" id="forecast-result" aria-live="polite" hidden>
+        <div class="risk" id="risk"></div>
+        <p class="trend" id="trend"></p>
+
+        <figure class="fc-chart">
+          <figcaption>Прибыль по месяцам: факт и прогноз с диапазоном 95%, ₽</figcaption>
+          <svg id="forecast-chart" role="img" preserveAspectRatio="xMidYMid meet"></svg>
+          <p class="fc-legend">
+            <span><span class="key key-line" aria-hidden="true"></span>факт</span>
+            <span><span class="key key-dash" aria-hidden="true"></span>прогноз</span>
+            <span><span class="key key-band" aria-hidden="true"></span>диапазон 95%</span>
+            <span><span class="key key-anom" aria-hidden="true"></span>аномальный месяц</span>
+          </p>
+        </figure>
+
+        <div class="table-wrap">
+          <table class="fc-table">
+            <caption>Прогноз на 3 месяца</caption>
+            <thead>
+              <tr><th scope="col">Месяц</th><th scope="col">Выручка</th><th scope="col">Затраты</th><th scope="col">Прибыль</th><th scope="col">Диапазон прибыли (95%)</th></tr>
+            </thead>
+            <tbody id="forecast-rows"></tbody>
+          </table>
+        </div>
+
+        <h3 class="fc-subtitle">Аномальные месяцы</h3>
+        <p class="fc-note" id="anomalies-note"></p>
+        <ul class="anomalies" id="anomalies"></ul>
+
+        <h3 class="fc-subtitle">Качество модели</h3>
+        <p class="fc-note" id="quality"></p>
+
+        <p class="fc-disclaimer">Прогноз — это оценка по прошлой динамике, а не гарантия. Модель не знает о будущих событиях (новые цены, сезон, крупные заказы). Решение принимает человек.</p>
+      </div>
+    </section>
+
     <!-- Пояснения показателей -->
     <section class="panel explain" aria-labelledby="explain-title">
-      <h2 id="explain-title">Как считаются показатели</h2>
+      <h2 id="explain-title">Как это работает</h2>
       <dl>
         <div>
           <dt>Прибыль</dt>
@@ -116,14 +191,27 @@
           <dt>Суммарные затраты</dt>
           <dd>Суммарные затраты = Переменные затраты + Постоянные затраты. На диаграмме они сравниваются с выручкой.</dd>
         </div>
+        <div>
+          <dt>ИИ-прогноз</dt>
+          <dd>Модель машинного обучения (линейная регрессия по времени) обучается на ваших данных: находит тренд выручки, затрат и прибыли и продлевает его на 3 месяца. Диапазон 95% показывает, насколько прогноз может отклониться.</dd>
+        </div>
+        <div>
+          <dt>Аномалии</dt>
+          <dd>Месяц считается аномальным, если значение сильно выбивается из тренда (модифицированный z-показатель больше 3,5). Такие месяцы исключаются из обучения, чтобы разовое событие не исказило прогноз.</dd>
+        </div>
+        <div>
+          <dt>Проверка качества</dt>
+          <dd>Модель обучают без последних 3 месяцев и сравнивают её прогноз с фактом. Средняя ошибка в процентах (MAPE) показывает, насколько можно доверять прогнозу.</dd>
+        </div>
       </dl>
     </section>
 
     <footer class="page-footer">
-      <p>Учебный проект. Калькулятор использует упрощённую модель и не заменяет бухгалтерский и налоговый расчёт.</p>
+      <p>Учебный проект. Калькулятор использует упрощённую модель и не заменяет бухгалтерский и налоговый расчёт. Прогноз носит справочный характер.</p>
     </footer>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
+  <script src="forecast.js?v=2"></script>
 </body>
 </html>

@@ -10,6 +10,13 @@
 
   var FIELD_IDS = ['revenue', 'variable', 'fixed'];
 
+  // Общие функции разбора и форматирования нужны и модулю ИИ-прогноза (forecast.js)
+  window.FinCalc = {
+    parseAmount: function (raw) { return parseAmount(raw); },
+    formatMoney: function (kopecks) { return formatMoney(kopecks); },
+    formatPercent: function (value) { return formatPercent(value); }
+  };
+
   var form = document.getElementById('calc-form');
   var resetButton = document.getElementById('reset-button');
   var resultBox = document.getElementById('result');
